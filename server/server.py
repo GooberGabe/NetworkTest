@@ -8,7 +8,7 @@ HOST, PORT = "localhost", 9999
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('server.html')
 
 @app.route('/send_message', methods=['POST'])
 def send_message():
