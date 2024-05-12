@@ -74,29 +74,33 @@ _Note: Add more rows as needed._
 
 This section should be filled out at the end of the Sprint and submitted.
 
-1. Put your GitHub link for your demonstration software here: 
+1. Put your GitHub link for your demonstration software here: https://github.com/GooberGabe/NetworkTest
 
-2. Put your YouTube link for your code walkthrough and demo video here:
+2. Put your YouTube link for your code walkthrough and demo video here: https://drive.google.com/file/d/146phFmSx2KshVdZDz4tQhgLuDbXJEbde/view?usp=sharing
 
 3. Complete the following checklist by either indicating "Yes" or "No". If you indicate "No" then provide an explanation of why beneath the table.
 
 |Question                                                    |Response|
 |------------------------------------------------------------|--------|
-|Are the links above public and working?                     |        |
-|Did you complete all the unique requirements for the module?|        |
-|Did you write at least 100 lines of code?                   |        |
-|Did you fully complete the readme.md file?                  |        |
-|Did you put the readme.md file in GitHub in the top folder? |        |
+|Are the links above public and working?                     | Yes    |
+|Did you complete all the unique requirements for the module?| Yes    |
+|Did you write at least 100 lines of code?                   | Yes    |
+|Did you fully complete the readme.md file?                  | Yes    |
+|Did you put the readme.md file in GitHub in the top folder? | Yes    |
 
 4. If you completed a Stretch Challenge (as shown in the Module Description document in Canvas) then describe what you did.  If you did the Choose Your Own Adventure module, then you get to decide what qualifies as a Stretch Challenge.
+- For the stretch challenge, I implemented three commands-- an exit command to disconnect, a users command to display all users connected, and a whisper command to privately message another user. 
 
 5. Did you change your selected module during the middle of the Sprint?  If yes, then describe what you changed it to, when you changed it, and why you changed it.
+- My original vision was to create a sort of jackbox-style quiz game. However, I ran into some problems building the frontend, and ultimatley had to abandon that goal in favor of something simpler. 
 
 6. Using the log above, fill in the total hours and minutes you spent on the individual module:
 
 |Activity         |Total Hours:Minutes|
 |-----------------|-------------------|
-|Individual Module|                   |
+|Individual Module|12:20              |
 
 7. What strategies (behavioral and technical) worked well during this Sprint?  What did not work well?  List some possible ways that you can improve next Sprint.
+- This Sprint, I was pretty effective at utilizing the internet and other sources to learn the material. 
+- Next sprint, I hope to improve by having a more solid plan of the specific features I want to implement. 
 
