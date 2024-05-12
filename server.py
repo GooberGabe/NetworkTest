@@ -1,31 +1,52 @@
-import socketserver
+import socket
+import threading
 
-# Define a custom handler to manage client connections
-class MyTCPHandler(socketserver.BaseRequestHandler):
-    def handle(self):
-        print("New client connected:", self.client_address)
-        self.request.sendall(b"Welcome to the server!\n")
+#server_ip = "10.255.14.116"
+server_ip = "localhost"
+server_port = 7000
+server_address = (server_ip, server_port)
 
-        # Listen for messages from the client and broadcast them to all connected clients
-        while True:
-            data = self.request.recv(1024).strip()
-            if not data:
-                break
-            print(f"Received from {self.client_address}: {data.decode()}")
-            self.broadcast(data)
+clients = {} # Key = Connection, Value = Username
+clients_lock = threading.Lock()
 
-    def broadcast(self, data):
-        for client in clients:
-            client.sendall(data)
+def broadcast(message, connection):
+    with clients_lock:
+        user = clients[connection]
+        message = bytes(f"{user}: {message}", "UTF-8")
+        for client in clients.keys():
+            if client != connection:
+                client.sendall(message)
 
-# Create a list to store connected clients
-clients = []
+def client_connect(connection, address):
+    with clients_lock:
+        clients[connection] = address
+    while True:
+        try:
+            data = connection.recv(1024)
+            data = str(data, "UTF-8")
+            
+            if (len(data) > 0):
+                print(f"Received: {data}")
+                response = bytes(data, "UTF-8")
+                
+                broadcast(data, connection)
+        except Exception as e:
+            print(f"[ERR] {e}")
+            break 
 
-# Define the server settings
-HOST, PORT = "localhost", 9999
+    print(f"Client Disconnected: {address}.")
+    with clients_lock:
+        del clients[connection]
 
-# Create the server object
-server = socketserver.TCPServer((HOST, PORT), MyTCPHandler)
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+    sock.bind(server_address)
+    sock.listen()
+    print(f"Server started: {server_address}")
 
-# Start the server to listen for incoming connections
-server.serve_forever()
+    while True:
+        connection, address = sock.accept()
+        print(f"Client Connected: {connection} {address}")
+        client_thread = threading.Thread(target=client_connect, 
+                                         args=(connection,address))
+        client_thread.start()
+
